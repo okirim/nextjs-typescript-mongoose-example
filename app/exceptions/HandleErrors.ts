@@ -1,12 +1,13 @@
 
-import { NextApiHandler, NextApiRequest } from 'next';
-import { ErrorHandler } from 'next-connect';
+import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { handleCastErrorDB, handleDuplicateFieldsDB, handleValidationErrorDB } from './DatabaseExceptions';
 import { devErrorResponse } from './devErrorResponse';
 import { prodErrorResponse } from './prodErrorResponse';
+import {AppError} from "./AppError";
 
 
-export const onError = (err, req, res,next) => {
+
+export const onError = (err:any, req:NextApiRequest, res:NextApiResponse,next:NextApiHandler) => {
     err.statusCode = err.statusCode || 500;
     err.status = err.status || "error";     
 
@@ -16,13 +17,13 @@ export const onError = (err, req, res,next) => {
     }
     else if (process.env.NODE_ENV == "production") {
         //others errors
-        let error = { ...err }
-        // console.log(`---------------${err.name}--------------`)
-        if (err.name === "CastError") error = handleCastErrorDB(error); //invalid ID
-        if (err.code === 11000) error = handleDuplicateFieldsDB(error); //duplicate database field 
-        if (err.name === "ValidationError") error = handleValidationErrorDB(error);   //validation error 
+        //mongoose errors
+        let error;
+        if (err.name === "CastError") error = handleCastErrorDB(err); //invalid ID
+        if (err.code === 11000) error = handleDuplicateFieldsDB(err); //duplicate database field
+        if (err.name === "ValidationError") error = handleValidationErrorDB(err);   //validation error
 
-        return   prodErrorResponse(error, res);
+        return   prodErrorResponse(error as AppError, res);
 
     };
 }

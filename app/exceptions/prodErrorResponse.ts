@@ -1,4 +1,6 @@
-export const prodErrorResponse = (err,res) => {
+import { NextApiResponse } from 'next';
+import { AppError } from './AppError';
+export const prodErrorResponse = (err:AppError,res:NextApiResponse) => {
     if (err.isOperational) {
          res.status(err.statusCode).json({
             status: err.status,

@@ -7,7 +7,7 @@ import { onError } from '../../../app/exceptions/HandleErrors';
 
 const handler = nc<NextApiRequest, NextApiResponse>({ onError});
 
-database_connection();
+
  
 handler.get('/api/comments',getComments)
 handler.post('/api/comments',getComments)

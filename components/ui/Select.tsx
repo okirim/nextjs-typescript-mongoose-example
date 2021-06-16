@@ -4,7 +4,7 @@ import {CheckIcon, SelectorIcon} from '@heroicons/react/solid'
 import {FnVoid} from "../../app/types/commons.types";
 
 
-function classNames(...classes) {
+function classNames(...classes:string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
@@ -21,7 +21,7 @@ const initialValue:SelectItem={
 interface SelectProps {
     selectLabel?: string,
     data: SelectItem[],
-    onSelect?:FnVoid,
+    onSelect:FnVoid,
 
 }
 
@@ -104,6 +104,6 @@ const Select: React.FC<SelectProps> = (props) => {
             )}
         </Listbox>
     )
-}
+};
 
 export default Select;

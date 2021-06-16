@@ -1,15 +1,15 @@
 import { AppError } from './AppError';
-
-
-
-export const handleCastErrorDB = (err) => {
+/*
+  @cast  error
+*/
+export const handleCastErrorDB = (err:any) => {
     const message = `Invalid ${err.path}: ${err.value}.`;
     return new AppError(message, 400);
 };
 /*
   @duplication field error
 */
-export const handleDuplicateFieldsDB = (err) => {
+export const handleDuplicateFieldsDB = (err: any) => {
 
     const value = Object.keys(err.keyValue);
     //  console.log(value);
@@ -20,9 +20,9 @@ export const handleDuplicateFieldsDB = (err) => {
 /*
   @ validation error
 */
-export const handleValidationErrorDB = (err) => {
+export const handleValidationErrorDB = (err: any) => {
 
-    const errors = Object.values(err.errors).map((el:Error) => el.message);
+    const errors = Object.values(err.errors).map((el:any) => el.message);
 
     const message = `Invalid input data. ${errors.join(". ")}`;
     return new AppError(message, 400);
