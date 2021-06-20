@@ -3,9 +3,9 @@ export class AppError extends Error {
     public isOperational: boolean;
     public statusCode: number;
 
-    constructor(public message: string, statusCode: number) {
+    constructor(public message: string, statusCode: number=500) {
         super(message)
-        this.statusCode = statusCode || 500;
+        this.statusCode = statusCode;
         this.status = 'error'
         this.isOperational = true;
         Object.setPrototypeOf(this, AppError.prototype);

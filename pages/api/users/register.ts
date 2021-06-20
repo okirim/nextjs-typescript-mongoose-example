@@ -2,16 +2,13 @@
 import nc from 'next-connect'
 import database_connection from '../../../app/database/connection';
 import { onError } from '../../../app/exceptions/HandleErrors';
-import { getUsers } from '../../../controller/users/getUsers';
-import {login} from "../../../controller/users/login";
+import {register} from "../../../controller/users/register";
 
 const handler = nc<NextApiRequest, NextApiResponse>({ onError});
 
 
 
-//@endpoint /api/users
-handler.get(getUsers)
-
-
+// endpoint: /api/users/register
+handler.post(register);
 
 export default handler

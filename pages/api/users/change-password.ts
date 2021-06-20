@@ -1,14 +1,14 @@
 ﻿import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect'
-import database_connection from '../../../app/database/connection';
 import { onError } from '../../../app/exceptions/HandleErrors';
-import {register} from "../../../controller/users/register";
+import { changePassword } from '../../../controller/users/changePassword';
+
 
 const handler = nc<NextApiRequest, NextApiResponse>({ onError});
 
 
 
-// endpoint: /api/users/login
-handler.post(register);
+// endpoint: /api/users/change-password
+handler.patch(changePassword);
 
 export default handler

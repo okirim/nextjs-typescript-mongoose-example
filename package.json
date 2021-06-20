@@ -12,7 +12,9 @@
     "@airtasker/spot": "^1.8.1",
     "@headlessui/react": "^1.2.0",
     "@heroicons/react": "^1.0.1",
+    "@tailwindcss/forms": "^0.3.3",
     "@types/mongoose": "^5.11.97",
+    "@types/validator": "^13.1.4",
     "axios": "^0.21.1",
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "class-validator": "^0.13.1",
@@ -25,8 +27,11 @@
     "nice-query": "^1.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.8.8",
+    "react-query": "^3.17.1",
     "swr": "^0.5.6",
-    "uninstall": "^0.0.0"
+    "uninstall": "^0.0.0",
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.13.0",

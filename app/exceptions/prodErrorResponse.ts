@@ -10,7 +10,6 @@ export const prodErrorResponse = (err:AppError,res:NextApiResponse) => {
     } else {
         // 1) Log errors
         console.error("ERROR", err);
-
         // 2) Send generic message
          res.status(500).json({
             status: "error",
