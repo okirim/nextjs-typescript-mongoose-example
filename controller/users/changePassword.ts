@@ -25,14 +25,18 @@ export const changePassword = CatchAsync(async (req: NextApiRequest, res: NextAp
     }
     const user = await User.findOne({
         email,
-    }) as UserDocument
+    }).select('+password') as UserDocument
     if (!user) {
         throw new AppError("user doesn't exists", 400);
     }
     const checkPassword = await Password.compare(user.password, password);
     if (!checkPassword) {
-        throw new AppError('invalid password');
+        throw new AppError('invalid password',400);
     }
+  
+    //hash newPassword and update user password
+    user.password=await Password.hash(newPassword);
+    await user.save();
     AppResponse<UserAttrs>(res, user, 201)
 })
 
